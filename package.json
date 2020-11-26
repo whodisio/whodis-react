@@ -19,8 +19,8 @@
     "claims",
     "token",
     "react",
-    "hooks",
-    "context"
+    "context",
+    "hooks"
   ],
   "bugs": "https://github.com/whodisio/whodis-react/issues",
   "main": "dist/index.js",
@@ -72,6 +72,6 @@
     "react": "^17.0.1",
     "simple-cookie-client": "^0.1.0",
     "simple-jwt-auth": "^0.5.5",
-    "whodis-client": "^0.5.0"
+    "whodis-client": "^0.5.2"
   }
 }

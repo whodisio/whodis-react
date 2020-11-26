@@ -1,10 +1,17 @@
 import { useState } from 'react';
-import { answerAuthChallenge, askAuthChallenge } from 'whodis-client';
-import { ChallengeGoal, ChallengeType, ContactMethodType } from 'whodis-client/dist/askAuthChallenge';
+import { answerAuthChallenge, askAuthChallenge, ChallengeGoal, ChallengeType, ContactMethodType } from 'whodis-client';
 
 import { saveToken } from './token/saveToken';
 import { useAuthenticationConfig } from './useAuthenticationConfig';
 
+// and re-export these two types, since they're used as inputs to a function we expose
+export { ChallengeGoal, ContactMethodType } from 'whodis-client';
+
+/**
+ * hook which exposes using confirmation code challenge to authenticate
+ * - supports login and signup
+ * - supports email and email
+ */
 export const useConfirmationCodeChallenge = () => {
   // expose the client and directory uuid
   const { directoryUuid, clientUuid } = useAuthenticationConfig();
