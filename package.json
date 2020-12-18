@@ -23,7 +23,7 @@
     "hooks"
   ],
   "bugs": "https://github.com/whodisio/whodis-react/issues",
-  "main": "dist/index.js",
+  "module": "dist/index.js",
   "engines": {
     "node": ">=8.0.0"
   },
