@@ -160,3 +160,7 @@ export const getServerSideProps = async ({ req }) => {
   loadAuthenticationFromSSRReq({ req });
 };
 ```
+
+### tree shaking
+
+This package supports tree shaking by exporting an ESM version of the module (for your bundler to use in tree shaking) in addition to a CJS version (for easy interop with your IDE and existing tools).
