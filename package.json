@@ -74,7 +74,7 @@
   "dependencies": {
     "event-stream-pubsub": "^0.1.0",
     "simple-cookie-client": "^0.1.0",
-    "simple-jwt-auth": "^0.7.0",
+    "simple-jwt-auth": "^0.8.0",
     "whodis-client": "^0.9.0"
   }
 }

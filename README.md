@@ -26,25 +26,25 @@ _see [whodis-cli](https://github.com/whodisio/whodis-cli) to create an account a
 ### check if a user is signed in
 
 ```tsx
-import { useAuthentication } from 'whodis-react';
+import { useAuthenticationClaims } from 'whodis-react';
 
 // in a component, declaratively, with a hook
-const { authenticated } = useAuthentication();
+const claims = useAuthenticationClaims();
 ```
 
-_see also `getAuthentication` for imperative access to that data_
+_see also `getAuthenticationClaims` for imperative access to that data_
 
 ### get the user id
 
 ```tsx
-import { useAuthentication } from 'whodis-react';
+import { useAuthenticationClaims } from 'whodis-react';
 
 // in a component, declaratively, with a hook
-const { claims } = useAuthentication();
+const claims = useAuthenticationClaims();
 const userId = claims?.sub; // claims are only defined if user is authenticated; sub = userId
 ```
 
-_see also `getAuthentication` for imperative access to that data_
+_see also `getAuthenticationClaims` for imperative access to that data_
 
 ### signup or login, using confirmation code challenge
 
