@@ -55,8 +55,8 @@ export const useConfirmationCodeChallenge = () => {
         challengeAnswer: answer,
       });
 
-      // save the token if was correct
-      saveToken({ token });
+      // save the token if one was given for the challenge
+      if (token) saveToken({ token });
     },
     [challengeUuid],
   );
