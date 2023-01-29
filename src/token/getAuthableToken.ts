@@ -21,23 +21,20 @@ export const getAuthableToken = async (): Promise<string | null> => {
   // extract data about the token
   const expired = isTokenExpired({ token });
   const refreshable = isTokenRefreshable({ token });
-  console.log({ expired, refreshable });
 
-  // if token is expired and not refreshable, same thing as not having a token
-  if (expired && !refreshable) return null;
+  // if token is not expired, return it
+  if (!expired) return token;
 
-  // if the token is expired and refreshable, refresh it
-  if (expired && refreshable) {
-    try {
-      const refreshedToken = await refreshToken(); // refresh it
-      saveToken({ token: refreshedToken }); // save the refreshed token for future calls
-      return refreshedToken; // and give the refresh token for usage
-    } catch (error) {
-      console.warn('could not refresh token', { error });
-      return null; // if we had an error refreshing the token, return null
-    }
+  // if not refreshable, same thing as not having a token
+  if (!refreshable) return null;
+
+  // if expired but refreshable, refresh it
+  try {
+    const refreshedToken = await refreshToken(); // refresh it
+    saveToken({ token: refreshedToken }); // save the refreshed token for future calls
+    return refreshedToken; // and give the refresh token for usage
+  } catch (error) {
+    console.warn('could not refresh token', { error });
+    return null; // if we had an error refreshing the token, return null
   }
-
-  // otherwise, the token is not expired, so return it
-  return token;
 };

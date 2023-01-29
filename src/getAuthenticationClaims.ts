@@ -5,9 +5,9 @@ import { getAuthableTokenClaims } from './token/getAuthableTokenClaims';
  *
  * for declarative usage - see the `useAuthenticationClaims` hook
  */
-export const getAuthenticationClaims = () => {
+export const getAuthenticationClaims = async () => {
   // grab the token
-  const claims = getAuthableTokenClaims();
+  const claims = await getAuthableTokenClaims();
 
   // return the authentication data
   return claims;
