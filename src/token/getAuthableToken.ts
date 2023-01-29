@@ -21,6 +21,7 @@ export const getAuthableToken = async (): Promise<string | null> => {
   // extract data about the token
   const expired = isTokenExpired({ token });
   const refreshable = isTokenRefreshable({ token });
+  console.log({ expired, refreshToken });
 
   // if token is expired and not refreshable, same thing as not having a token
   if (expired && !refreshable) return null;
