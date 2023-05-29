@@ -18,7 +18,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: install
-        run: npm install
+        run: npm ci
 
       - name: tests
         run: CICD=true npm run test
