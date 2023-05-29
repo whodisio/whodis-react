@@ -35,7 +35,7 @@ export const isTokenSynchronized = ({ token }: { token: string }): boolean => {
   if (!synchronizationCookie) return false; // if no synchronization cookie, not synchronized (e.g., maybe user logged out)
 
   // check that the tokens are in sync
-  const tokenUuidHashExpected = synchronizationCookie.value;
+  const tokenUuidHashExpected = synchronizationCookie.value.split(':')[0];
   const tokenUuidHashFound = toSha256(
     getUnauthedClaims<WhodisAuthTokenClaims>({ token }).jti,
   );
