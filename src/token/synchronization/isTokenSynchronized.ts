@@ -1,7 +1,14 @@
-import sha256 from 'simple-sha256';
 import { getCookie } from 'simple-cookie-client';
 import { getUnauthedClaims } from 'simple-jwt-auth';
 import { WhodisAuthTokenClaims } from 'whodis-client';
+import { withSimpleCaching } from 'with-simple-caching';
+
+import { sha256 as Sha256 } from 'cross-sha256';
+import { createCache } from 'simple-in-memory-cache';
+
+const toSha256 = withSimpleCaching((input: string) => new Sha256().update(input).digest('hex'), {
+  cache: createCache(), // cache the result in memory to prevent redundant computation
+});
 
 /**
  * determines whether the token is synchronized across both environment's storages, to ensure consistent responses
@@ -29,7 +36,7 @@ export const isTokenSynchronized = ({ token }: { token: string }): boolean => {
 
   // check that the tokens are in sync
   const tokenUuidHashExpected = synchronizationCookie.value;
-  const tokenUuidHashFound = sha256.sync(
+  const tokenUuidHashFound = toSha256(
     getUnauthedClaims<WhodisAuthTokenClaims>({ token }).jti,
   );
   return tokenUuidHashExpected === tokenUuidHashFound;

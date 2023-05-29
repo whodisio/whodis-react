@@ -10,6 +10,7 @@
     "sourceMap": true,
     "outDir": "dist/cjs",
     "rootDir": "src",
+    "skipLibCheck": true,
     "lib": [
       "dom",
       "es7"
@@ -17,8 +18,7 @@
     "jsx": "react",
   },
   "include": [
-    "src/**/*.ts",
-    "nontyped_modules/**/*.d.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
     "src/**/*.test.ts",
