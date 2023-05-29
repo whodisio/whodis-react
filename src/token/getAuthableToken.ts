@@ -7,11 +7,14 @@ import { refreshToken } from './refreshToken';
 /**
  * internal use only
  *
- * use case: you need the token for making authenticated requests
+ * usecase:
+ * - you need the token for making authenticated requests
  *
- * action: grabs the token from storage and refreshes it before responding if needed
+ * action:
+ * - grabs the token from storage and refreshes it before responding if needed
  *
- * note: if you need a _sync_ response, see if all you really need is `getTokenData`.
+ * note:
+ * - if you need a _sync_ response, see if all you really need is `getTokenData`.
  */
 export const getAuthableToken = async (): Promise<string | null> => {
   // grab the token from storage
