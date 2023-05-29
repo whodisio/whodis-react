@@ -1,6 +1,6 @@
 {
   "name": "whodis-react",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "React hooks and components for secure, best practices authentication in seconds",
   "author": "UladKasach @uladkasach",
   "license": "MIT",
