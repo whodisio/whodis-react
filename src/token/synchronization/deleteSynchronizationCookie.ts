@@ -9,7 +9,7 @@ import { deleteCookie, getCookie } from 'simple-cookie-client';
  * note
  * - decodes the synchronization token to extract the domain and path to correctly delete it
  */
-export const deleteSynchronizationCookie = async () => {
+export const deleteSynchronizationCookie = () => {
   // lookup it's current value
   const synchronizationCookie = getCookie({ name: 'synchronization' });
   if (!synchronizationCookie) return; // if it doesn't exist, nothing to delete

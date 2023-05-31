@@ -3,6 +3,7 @@ import { TOKEN_STORAGE_KEY } from './key';
 import { isTokenSynchronized } from '../synchronization/isTokenSynchronized';
 import { isServerSideRendering } from '../../env/isServerSideRendering';
 import { forgetToken } from '../forgetToken';
+import { deleteSynchronizationCookie } from '../synchronization/deleteSynchronizationCookie';
 
 /**
  * internal use only
@@ -19,7 +20,10 @@ export const getTokenFromStorage = (): string | null => {
   if (!isServerSideRendering()) {
     // try and find the anti-csrf-token from local storage
     const antiCsrfToken = localStorage.getItem(TOKEN_STORAGE_KEY);
-    if (!antiCsrfToken || antiCsrfToken === 'null') return null; // if no anti-csrf-token, then no token in this env
+    if (!antiCsrfToken || antiCsrfToken === 'null') {
+      deleteSynchronizationCookie(); // ensure that serverside is aware that there's no token
+      return null; // and return that there's no token
+    }
 
     // if one exists, check that it is still in sync with the serverside
     const synchronized = isTokenSynchronized({ token: antiCsrfToken });
