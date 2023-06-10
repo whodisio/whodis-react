@@ -80,6 +80,8 @@ expose Login = () => {
 ### send the token to the backend on api calls
 
 ```ts
+import { getAuthorizationHeader } from 'whodis-react';
+
 const url = `anysubdomain.yourdomain.com/...`; // <- must be "same-site" as the website (i.e., domains must be same, subdomains can vary)
 await fetch(url, {
   method: 'POST',
@@ -89,6 +91,14 @@ await fetch(url, {
   },
   body: JSON.stringify(event),
 });
+```
+
+### log a user out
+
+```ts
+import { forgetAuthenticationToken } from 'whodis-react';
+
+await forgetAuthenticationToken(); // log the user out by forgetting their authentication token
 ```
 
 # nuances
