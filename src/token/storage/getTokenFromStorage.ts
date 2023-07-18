@@ -1,9 +1,10 @@
 import { getCookie } from 'simple-cookie-client';
-import { TOKEN_STORAGE_KEY } from './key';
-import { isTokenSynchronized } from '../synchronization/isTokenSynchronized';
+
 import { isServerSideRendering } from '../../env/isServerSideRendering';
 import { forgetToken } from '../forgetToken';
 import { deleteSynchronizationCookie } from '../synchronization/deleteSynchronizationCookie';
+import { isTokenSynchronized } from '../synchronization/isTokenSynchronized';
+import { TOKEN_STORAGE_KEY } from './key';
 
 /**
  * internal use only

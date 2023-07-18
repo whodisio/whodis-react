@@ -1,5 +1,11 @@
 import { useCallback, useState } from 'react';
-import { answerAuthChallenge, askAuthChallenge, ChallengeGoal, ChallengeType, ContactMethodType } from 'whodis-client';
+import {
+  answerAuthChallenge,
+  askAuthChallenge,
+  ChallengeGoal,
+  ChallengeType,
+  ContactMethodType,
+} from 'whodis-client';
 
 import { saveToken } from './token/saveToken';
 import { useAuthenticationConfig } from './useAuthenticationConfig';
@@ -21,7 +27,13 @@ export const useConfirmationCodeChallenge = () => {
 
   // define how to ask the confirmation code challenge
   const askConfirmationCodeChallenge = useCallback(
-    async ({ goal, contactMethod }: { goal: ChallengeGoal; contactMethod: { type: ContactMethodType; address: string } }) => {
+    async ({
+      goal,
+      contactMethod,
+    }: {
+      goal: ChallengeGoal;
+      contactMethod: { type: ContactMethodType; address: string };
+    }) => {
       // make the request
       const { challengeUuid: newChallengeUuid } = await askAuthChallenge({
         directoryUuid,
@@ -47,7 +59,10 @@ export const useConfirmationCodeChallenge = () => {
   const answerConfirmationCodeChallenge = useCallback(
     async ({ answer }: { answer: string }) => {
       // check that challenge is defined
-      if (!challengeUuid) throw new Error('challenge must be asked for before it can be answered');
+      if (!challengeUuid)
+        throw new Error(
+          'challenge must be asked for before it can be answered',
+        );
 
       // send the answer
       const { token } = await answerAuthChallenge({

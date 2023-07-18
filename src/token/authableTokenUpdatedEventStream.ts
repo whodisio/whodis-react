@@ -10,4 +10,5 @@ export interface AuthableTokenUpdatedEvent {
 }
 
 // instantiate this particular stream
-export const authableTokenUpdatedEventStream = new EventStreamPubSub<AuthableTokenUpdatedEvent>();
+export const authableTokenUpdatedEventStream =
+  new EventStreamPubSub<AuthableTokenUpdatedEvent>();

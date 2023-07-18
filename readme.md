@@ -2,6 +2,8 @@
 
 React hooks and components for secure, best practices authentication in seconds
 
+Supports both react-browser and react-native
+
 ![ci_on_commit](https://github.com/whodisio/whodis-react/workflows/ci_on_commit/badge.svg)
 ![deploy_on_tag](https://github.com/whodisio/whodis-react/workflows/deploy_on_tag/badge.svg)
 
@@ -103,7 +105,7 @@ await forgetAuthenticationToken(); // log the user out by forgetting their authe
 
 # nuances
 
-### cookie based authentication -vs- local development
+### [platform:web] cookie based authentication -vs- local development
 
 Cookies are used in the web environment because they are the only way to securely store an auth token in a browser.
 
@@ -144,7 +146,7 @@ openssl req -x509 -out localhost.crt -keyout localhost.key \
    printf "[dn]\nCN=localhost.yourdomain.com\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost.yourdomain.com\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
 ```
 
-### server side rendering
+### [platform:web] server side rendering
 
 Special consideration is to support server-side rendering frameworks, like Next.JS.
 

@@ -5,7 +5,11 @@ import { exposeCookieFromReq } from 'simple-cookie-client';
  * - exposes both the `authorization` and `synchronization` tokens required for secure and consistent authentication in the web environment
  * - enables isomorphically using whodis-react functions across both clientside and serverside environments
  */
-export const loadAuthenticationFromSSRReq = ({ req }: { req: { headers: { cookie?: string } } }) => {
+export const loadAuthenticationFromSSRReq = ({
+  req,
+}: {
+  req: { headers: { cookie?: string } };
+}) => {
   exposeCookieFromReq({ name: 'authorization', req });
   exposeCookieFromReq({ name: 'synchronization', req });
 };

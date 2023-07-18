@@ -1,7 +1,10 @@
 import { redactSignature } from 'simple-jwt-auth';
 
 import { isServerSideRendering } from '../env/isServerSideRendering';
-import { authableTokenUpdatedEventStream, AuthableTokenUpdatedEventType } from './authableTokenUpdatedEventStream';
+import {
+  authableTokenUpdatedEventStream,
+  AuthableTokenUpdatedEventType,
+} from './authableTokenUpdatedEventStream';
 import { setTokenToStorage } from './storage/setTokenToStorage';
 
 export const saveToken = ({ token }: { token: string }) => {
@@ -10,11 +13,15 @@ export const saveToken = ({ token }: { token: string }) => {
 
   // if the token is not signature redacted, throw an error - should never occur - since if this does, its an XSS vulnerability
   if (token !== redactSignature({ token }))
-    throw new Error('non-signature-redacted token was attempted to be saved by client-side javascript. should not be occurring'); // fail fast if this occurs; this should be handled by whodis-client already and never should occur
+    throw new Error(
+      'non-signature-redacted token was attempted to be saved by client-side javascript. should not be occurring',
+    ); // fail fast if this occurs; this should be handled by whodis-client already and never should occur
 
   // otherwise, set it to storage
   setTokenToStorage({ token });
 
   // and emit that we saved a token
-  authableTokenUpdatedEventStream.publish({ event: { type: AuthableTokenUpdatedEventType.SAVED } });
+  authableTokenUpdatedEventStream.publish({
+    event: { type: AuthableTokenUpdatedEventType.SAVED },
+  });
 };

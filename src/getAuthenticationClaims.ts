@@ -1,4 +1,5 @@
 import { WhodisAuthTokenClaims } from 'whodis-client';
+
 import { getAuthableTokenClaims } from './token/getAuthableTokenClaims';
 
 /**
@@ -6,10 +7,11 @@ import { getAuthableTokenClaims } from './token/getAuthableTokenClaims';
  *
  * for declarative usage - see the `useAuthenticationClaims` hook
  */
-export const getAuthenticationClaims = async (): Promise<WhodisAuthTokenClaims | null> => {
-  // grab the token
-  const claims = await getAuthableTokenClaims();
+export const getAuthenticationClaims =
+  async (): Promise<WhodisAuthTokenClaims | null> => {
+    // grab the token
+    const claims = await getAuthableTokenClaims();
 
-  // return the authentication data
-  return claims;
-};
+    // return the authentication data
+    return claims;
+  };

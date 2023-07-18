@@ -1,5 +1,6 @@
 import { getUnauthedClaims } from 'simple-jwt-auth';
 import { WhodisAuthTokenClaims } from 'whodis-client';
+
 import { getAuthableToken } from './getAuthableToken';
 
 /**

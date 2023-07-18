@@ -1,8 +1,8 @@
 import { isTokenExpired, isTokenRefreshable } from 'whodis-client';
 
+import { refreshToken } from './refreshToken';
 import { saveToken } from './saveToken';
 import { getTokenFromStorage } from './storage/getTokenFromStorage';
-import { refreshToken } from './refreshToken';
 
 /**
  * internal use only
