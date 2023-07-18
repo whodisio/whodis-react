@@ -21,7 +21,8 @@
   },
   "extends": "@tsconfig/node-lts-strictest/tsconfig.json",
   "include": [
-    "**/*.ts"
+    "**/*.ts",
+    "**/*.tsx"
   ],
   "exclude": [
     "dist",

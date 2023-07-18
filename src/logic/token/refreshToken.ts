@@ -1,11 +1,14 @@
 import * as whodis from 'whodis-client';
 
-import { saveToken } from './saveToken';
-import { getTokenFromStorage } from './storage/getTokenFromStorage';
+import { WhodisAuthTokenStorage } from '../../domain/WhodisAuthTokenStorage';
 
-export const refreshToken = async () => {
+export const refreshToken = async ({
+  storage,
+}: {
+  storage: WhodisAuthTokenStorage;
+}) => {
   // grab the token
-  const token = getTokenFromStorage();
+  const token = await storage.get();
   if (!token) throw new Error('no token defined, can not refresh');
 
   // check that it _needs_ to be refreshed
@@ -22,6 +25,6 @@ export const refreshToken = async () => {
     throw new Error(
       'refreshed token is still expired! this is a whodis problem',
     ); // sanity check the token was refreshed successfully; fail fast if not
-  saveToken({ token: refreshedToken }); // save the refreshed token for future calls
+  await storage.set(refreshedToken); // save the refreshed token for future calls
   return refreshedToken;
 };

@@ -56,13 +56,9 @@
     "postversion": "git push origin HEAD --tags --no-verify"
   },
   "dependencies": {
-    "cross-sha256": "^1.2.0",
-    "event-stream-pubsub": "^0.1.0",
-    "simple-cookie-client": "^0.3.1",
-    "simple-in-memory-cache": "^0.3.0",
+    "event-stream-pubsub": "0.1.1",
     "simple-jwt-auth": "^0.8.0",
-    "whodis-client": "^0.10.1",
-    "with-simple-caching": "^0.11.1"
+    "whodis-client": "^0.10.1"
   },
   "devDependencies": {
     "@commitlint/cli": "13.1.0",

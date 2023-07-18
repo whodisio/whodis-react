@@ -1,4 +1,5 @@
-import { getAuthableToken } from './token/getAuthableToken';
+import { WhodisAuthTokenStorage } from '../../domain/WhodisAuthTokenStorage';
+import { getAuthableToken } from '../token/getAuthableToken';
 
 /**
  * used to define the value of the authorization header, based on whether a user is logged in or not
@@ -12,9 +13,13 @@ import { getAuthableToken } from './token/getAuthableToken';
  *
  * IMPORTANT: please make sure that this value is never logged out - as it could contain the raw auth token itself.
  */
-export const getAuthorizationHeader = async () => {
+export const getAuthorizationHeader = async ({
+  storage,
+}: {
+  storage: WhodisAuthTokenStorage;
+}) => {
   // grab the token from storage
-  const token = await getAuthableToken();
+  const token = await getAuthableToken({ storage });
   if (!token) return ''; // if its not set, then no auth available
 
   // set the authorization header w/ the bearer token scheme

@@ -7,7 +7,7 @@ import {
   ContactMethodType,
 } from 'whodis-client';
 
-import { saveToken } from './token/saveToken';
+import { WhodisAuthTokenStorage } from '../../domain/WhodisAuthTokenStorage';
 import { useAuthenticationConfig } from './useAuthenticationConfig';
 
 // and re-export these two types, since they're used as inputs to a function we expose
@@ -18,7 +18,11 @@ export { ChallengeGoal, ContactMethodType } from 'whodis-client';
  * - supports login and signup
  * - supports email and email
  */
-export const useConfirmationCodeChallenge = () => {
+export const useConfirmationCodeChallenge = ({
+  storage,
+}: {
+  storage: WhodisAuthTokenStorage;
+}) => {
   // expose the client and directory uuid
   const { directoryUuid, clientUuid } = useAuthenticationConfig();
 
@@ -71,7 +75,7 @@ export const useConfirmationCodeChallenge = () => {
       });
 
       // save the token if one was given for the challenge
-      if (token) saveToken({ token });
+      if (token) await storage.set(token);
     },
     [challengeUuid],
   );

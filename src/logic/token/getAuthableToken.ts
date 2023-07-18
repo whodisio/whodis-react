@@ -1,8 +1,7 @@
 import { isTokenExpired, isTokenRefreshable } from 'whodis-client';
 
+import { WhodisAuthTokenStorage } from '../../domain/WhodisAuthTokenStorage';
 import { refreshToken } from './refreshToken';
-import { saveToken } from './saveToken';
-import { getTokenFromStorage } from './storage/getTokenFromStorage';
 
 /**
  * internal use only
@@ -16,9 +15,13 @@ import { getTokenFromStorage } from './storage/getTokenFromStorage';
  * note:
  * - if you need a _sync_ response, see if all you really need is `getTokenData`.
  */
-export const getAuthableToken = async (): Promise<string | null> => {
+export const getAuthableToken = async ({
+  storage,
+}: {
+  storage: WhodisAuthTokenStorage;
+}): Promise<string | null> => {
   // grab the token from storage
-  const token = getTokenFromStorage();
+  const token = await storage.get();
   if (!token) return null;
 
   // extract data about the token
@@ -33,8 +36,8 @@ export const getAuthableToken = async (): Promise<string | null> => {
 
   // if expired but refreshable, refresh it
   try {
-    const refreshedToken = await refreshToken(); // refresh it
-    saveToken({ token: refreshedToken }); // save the refreshed token for future calls
+    const refreshedToken = await refreshToken({ storage }); // refresh it
+    await storage.set(refreshedToken); // save the refreshed token for future calls
     return refreshedToken; // and give the refresh token for usage
   } catch (error) {
     console.warn('could not refresh token', { error });
