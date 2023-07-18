@@ -12,10 +12,10 @@ import { getAuthableToken } from './token/getAuthableToken';
  *
  * IMPORTANT: please make sure that this value is never logged out - as it could contain the raw auth token itself.
  */
-export const getAuthorizationHeader = async () => {
+export const getAuthorizationHeader = async (): Promise<string | undefined> => {
   // grab the token from storage
   const token = await getAuthableToken();
-  if (!token) return ''; // if its not set, then no auth available
+  if (!token) return undefined; // if its not set, then no auth available
 
   // set the authorization header w/ the bearer token scheme
   return `Bearer ${token}`;

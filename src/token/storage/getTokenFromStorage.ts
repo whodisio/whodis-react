@@ -1,9 +1,13 @@
 import { getCookie } from 'simple-cookie-client';
 
-import { isServerSideRendering } from '../../env/isServerSideRendering';
+import {
+  EnvironmentRuntimePlatform,
+  runtime,
+} from '../../env/getRuntimeEnvironment';
 import { forgetToken } from '../forgetToken';
 import { deleteSynchronizationCookie } from '../synchronization/deleteSynchronizationCookie';
 import { isTokenSynchronized } from '../synchronization/isTokenSynchronized';
+import { getNativeSecureStorage } from './getNativeSecureStorage';
 import { TOKEN_STORAGE_KEY } from './key';
 
 /**
@@ -16,9 +20,17 @@ import { TOKEN_STORAGE_KEY } from './key';
  * WARNING:
  * - on server side this _does_ expose the raw JWT - and care must be taken not to log it
  */
-export const getTokenFromStorage = (): string | null => {
+export const getTokenFromStorage = async (): Promise<string | null> => {
+  // handle getting the token on native
+  if (runtime.platform === EnvironmentRuntimePlatform.NATIVE) {
+    const { getItemAsync } = await getNativeSecureStorage();
+    const token = await getItemAsync(TOKEN_STORAGE_KEY);
+    if (token === 'null') return null;
+    return token;
+  }
+
   // handle getting the token on client-side
-  if (!isServerSideRendering()) {
+  if (runtime.platform === EnvironmentRuntimePlatform.BROWSER) {
     // try and find the anti-csrf-token from local storage
     const antiCsrfToken = localStorage.getItem(TOKEN_STORAGE_KEY);
     if (!antiCsrfToken || antiCsrfToken === 'null') {
@@ -38,7 +50,7 @@ export const getTokenFromStorage = (): string | null => {
   }
 
   // handle getting the token on server-side
-  if (isServerSideRendering()) {
+  if (runtime.platform === EnvironmentRuntimePlatform.SERVER) {
     // try and find the token from cookie storage
     const tokenCookie = getCookie({ name: 'authorization' });
     if (!tokenCookie) return null; // if no cookie, then no token in this env
@@ -52,6 +64,6 @@ export const getTokenFromStorage = (): string | null => {
     return token;
   }
 
-  // otherwise, unsupported environment
+  // otherwise, unsupported runtime platform
   throw new Error('unexpected environment to get token from storage');
 };

@@ -71,7 +71,7 @@ export const useConfirmationCodeChallenge = () => {
       });
 
       // save the token if one was given for the challenge
-      if (token) saveToken({ token });
+      if (token) await saveToken({ token });
     },
     [challengeUuid],
   );

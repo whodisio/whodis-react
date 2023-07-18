@@ -1,15 +1,23 @@
 import { useState, useEffect } from 'react';
+import { WhodisAuthTokenClaims } from 'whodis-client';
 
 import { authableTokenUpdatedEventStream } from './authableTokenUpdatedEventStream';
 import { getAuthableTokenClaims } from './getAuthableTokenClaims';
-import { getAuthableTokenClaimsWithoutWaitingForRefresh } from './getAuthableTokenClaimsWithoutWaitingForRefresh';
-import { refreshTokenIfPossible } from './refreshTokenIfPossible';
 
-export const useAuthableTokenClaims = () => {
-  // initialize the state
-  const [claims, setClaims] = useState(
-    getAuthableTokenClaimsWithoutWaitingForRefresh(),
-  );
+export const useAuthableTokenClaims = (): {
+  /**
+   * the authed claims on the device
+   *
+   * note
+   * - undefined = we have not checked yet
+   * - null = no authed claims
+   */
+  claims: WhodisAuthTokenClaims | null | undefined;
+} => {
+  // track the authed claims
+  const [claims, setClaims] = useState<
+    WhodisAuthTokenClaims | null | undefined
+  >(undefined); // undefined until we check storage
 
   // define a consumer that updates the state based on the authableTokenUpdatedEventStream
   const consumer = async () => {
@@ -19,11 +27,11 @@ export const useAuthableTokenClaims = () => {
 
   // subscribe to that event stream (in useEffect, so that its only done once)
   useEffect(() => {
+    // kick off grabbing initial state of claims
+    void consumer();
+
     // subscribe the auth token updated events, so we have the latest state of the token at all time
     authableTokenUpdatedEventStream.subscribe({ consumer }); // subscribe on mount
-
-    // if there wern't any claims, then try refreshing the token if possible (that will kick off a token-updated-event which we've subscribed to, which the state will be updated by)
-    if (!claims) void refreshTokenIfPossible();
 
     // and ensure that we unsubscribe on unmount to cleanup after ourselves
     return () => authableTokenUpdatedEventStream.unsubscribe({ consumer }); // unsubscribe on unmount

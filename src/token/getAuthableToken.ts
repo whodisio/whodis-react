@@ -18,7 +18,7 @@ import { getTokenFromStorage } from './storage/getTokenFromStorage';
  */
 export const getAuthableToken = async (): Promise<string | null> => {
   // grab the token from storage
-  const token = getTokenFromStorage();
+  const token = await getTokenFromStorage();
   if (!token) return null;
 
   // extract data about the token

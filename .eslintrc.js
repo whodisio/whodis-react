@@ -4,6 +4,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
     'plugin:import/recommended', // specifies good import rules
     'airbnb-typescript/base', // uses the airbnb recommended rules
+    'plugin:react/recommended',
     'plugin:prettier/recommended', // Enables eslint-plugin-prettier and displays prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
   ],
   parserOptions: {
@@ -28,6 +29,16 @@ module.exports = {
           '**/__test_utils__/**/*.ts',
           'provision/**/*.ts',
         ],
+      },
+    ],
+    'import/extensions': [
+      'error',
+      'always',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
       },
     ],
     '@typescript-eslint/no-explicit-any': 'off', // sometimes this is a valid definition

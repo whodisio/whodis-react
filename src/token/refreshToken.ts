@@ -5,7 +5,7 @@ import { getTokenFromStorage } from './storage/getTokenFromStorage';
 
 export const refreshToken = async () => {
   // grab the token
-  const token = getTokenFromStorage();
+  const token = await getTokenFromStorage();
   if (!token) throw new Error('no token defined, can not refresh');
 
   // check that it _needs_ to be refreshed
@@ -22,6 +22,6 @@ export const refreshToken = async () => {
     throw new Error(
       'refreshed token is still expired! this is a whodis problem',
     ); // sanity check the token was refreshed successfully; fail fast if not
-  saveToken({ token: refreshedToken }); // save the refreshed token for future calls
+  await saveToken({ token: refreshedToken }); // save the refreshed token for future calls
   return refreshedToken;
 };
