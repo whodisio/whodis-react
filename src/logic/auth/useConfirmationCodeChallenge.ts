@@ -4,14 +4,14 @@ import {
   askAuthChallenge,
   ChallengeGoal,
   ChallengeType,
-  ContactMethodType,
+  ContactMethod,
 } from 'whodis-client';
 
 import { WhodisAuthTokenStorage } from '../../domain/WhodisAuthTokenStorage';
 import { useAuthenticationConfig } from './useAuthenticationConfig';
 
 // and re-export these two types, since they're used as inputs to a function we expose
-export { ChallengeGoal, ContactMethodType } from 'whodis-client';
+export { ChallengeGoal, ContactMethodChannel } from 'whodis-client';
 
 /**
  * hook which exposes using confirmation code challenge to authenticate
@@ -36,15 +36,15 @@ export const useConfirmationCodeChallenge = ({
       contactMethod,
     }: {
       goal: ChallengeGoal;
-      contactMethod: { type: ContactMethodType; address: string };
+      contactMethod: ContactMethod;
     }) => {
       // make the request
       const { challengeUuid: newChallengeUuid } = await askAuthChallenge({
         directoryUuid,
         clientUuid,
         goal,
-        contactMethod,
         type: ChallengeType.CONFIRMATION_CODE,
+        details: { contactMethod },
       });
 
       // now that we have the challenge, save it
