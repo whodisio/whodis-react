@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.2](https://github.com/whodisio/whodis-react/compare/v0.8.1...v0.8.2) (2023-09-07)
+
+
+### Bug Fixes
+
+* **deps:** bump to latest whodis-client ([126a256](https://github.com/whodisio/whodis-react/commit/126a256e55a996e3cfdea878fa18d77f56109038))
+* **practs:** bump to latest best practs ([1792066](https://github.com/whodisio/whodis-react/commit/1792066cceaa0592805b2daffca05f119b29c6fa))
+
 ## [0.8.1](https://github.com/whodisio/whodis-react/compare/v0.8.0...v0.8.1) (2023-07-18)
 
 
