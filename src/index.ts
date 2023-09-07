@@ -15,3 +15,4 @@ export {
   isWhodisAuthGoalError,
 } from 'whodis-client'; // forward this, so that users only need to import `whodis-react` to get all functionality
 export { WhodisAuthTokenStorage } from './domain/WhodisAuthTokenStorage';
+export { useAuthenticationConfig } from './logic/auth/useAuthenticationConfig';
