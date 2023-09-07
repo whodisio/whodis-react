@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.3](https://github.com/whodisio/whodis-react/compare/v0.8.2...v0.8.3) (2023-09-07)
+
+
+### Bug Fixes
+
+* **contract:** expose ability to use auth config ([01b4e11](https://github.com/whodisio/whodis-react/commit/01b4e112ad39512a039a599914fd9c4279378ad3))
+* **deps:** apply npm audit fix ([50020f4](https://github.com/whodisio/whodis-react/commit/50020f4aecc09548d14d07dbcd3b3ae9920f0900))
+
 ## [0.8.2](https://github.com/whodisio/whodis-react/compare/v0.8.1...v0.8.2) (2023-09-07)
 
 
