@@ -11,7 +11,7 @@ import { WhodisAuthTokenStorage } from '../../domain/WhodisAuthTokenStorage';
 import { useAuthenticationConfig } from './useAuthenticationConfig';
 
 // and re-export these two types, since they're used as inputs to a function we expose
-export { ChallengeGoal, ContactMethodChannel } from 'whodis-client';
+export { ChallengeGoal, ContactMethodType } from 'whodis-client';
 
 /**
  * hook which exposes using confirmation code challenge to authenticate

@@ -4,7 +4,7 @@ export { getAuthenticationClaims } from './logic/auth/getAuthenticationClaims';
 export {
   useConfirmationCodeChallenge,
   ChallengeGoal,
-  ContactMethodChannel,
+  ContactMethodType,
 } from './logic/auth/useConfirmationCodeChallenge';
 export { forgetAuthenticationToken } from './logic/auth/forgetAuthenticationToken';
 export { getAuthorizationHeader } from './logic/auth/getAuthorizationHeader';
