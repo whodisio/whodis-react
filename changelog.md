@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.4](https://github.com/whodisio/whodis-react/compare/v0.8.3...v0.8.4) (2023-09-09)
+
+
+### Bug Fixes
+
+* **domain:** contactMethod.channel -&gt; contactMethod.type ([5b7e4a7](https://github.com/whodisio/whodis-react/commit/5b7e4a7e335a570ded29c5f9679cc92156de2b44))
+
 ## [0.8.3](https://github.com/whodisio/whodis-react/compare/v0.8.2...v0.8.3) (2023-09-07)
 
 
