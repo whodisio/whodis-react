@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.5](https://github.com/whodisio/whodis-react/compare/v0.8.4...v0.8.5) (2023-09-18)
+
+
+### Bug Fixes
+
+* **deps:** bump whodis-client dep to support signin goal ([72a44e4](https://github.com/whodisio/whodis-react/commit/72a44e407f3bc3a3d6fd2a4867f6d39d208854a3))
+
 ## [0.8.4](https://github.com/whodisio/whodis-react/compare/v0.8.3...v0.8.4) (2023-09-09)
 
 
