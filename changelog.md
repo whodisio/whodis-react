@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.6](https://github.com/whodisio/whodis-react/compare/v0.8.5...v0.8.6) (2023-09-23)
+
+
+### Bug Fixes
+
+* **deps:** bump simple-oidc-auth dep for commonjs backwardscompat ([ab6bdfd](https://github.com/whodisio/whodis-react/commit/ab6bdfd5561b88db08a957ec0c32c964f4ab09d3))
+* **deps:** support react 18+ ([f92c22e](https://github.com/whodisio/whodis-react/commit/f92c22e62dbb65f699e4253c15090a99e6530fa1))
+
 ## [0.8.5](https://github.com/whodisio/whodis-react/compare/v0.8.4...v0.8.5) (2023-09-18)
 
 
