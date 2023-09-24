@@ -2,7 +2,7 @@
   "name": "whodis-react",
   "author": "whodisio",
   "description": "React hooks and components for secure, best practices authentication in seconds",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "repository": "whodisio/whodis-react",
   "homepage": "https://github.com/whodisio/whodis-react",
   "keywords": [
