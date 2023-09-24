@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "event-stream-pubsub": "0.1.1",
-    "simple-jwt-auth": "0.9.1",
+    "simple-jwt-auth": "0.11.1",
     "whodis-client": "0.11.10"
   },
   "devDependencies": {
