@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.7](https://github.com/whodisio/whodis-react/compare/v0.8.6...v0.8.7) (2023-09-24)
+
+
+### Bug Fixes
+
+* **deps:** bump simple-jwt-auth to eliminate buffer missing error ([d3f3083](https://github.com/whodisio/whodis-react/commit/d3f30831acbf340560977a8ab61bd7f2c4528f93))
+
 ## [0.8.6](https://github.com/whodisio/whodis-react/compare/v0.8.5...v0.8.6) (2023-09-23)
 
 
