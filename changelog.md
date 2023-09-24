@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.8](https://github.com/whodisio/whodis-react/compare/v0.8.7...v0.8.8) (2023-09-24)
+
+
+### Bug Fixes
+
+* **deps:** bump whodis-client to eliminate buffer missing error ([43505de](https://github.com/whodisio/whodis-react/commit/43505dec1eb40610499b4e61d6b040d712d0d4cb))
+
 ## [0.8.7](https://github.com/whodisio/whodis-react/compare/v0.8.6...v0.8.7) (2023-09-24)
 
 
