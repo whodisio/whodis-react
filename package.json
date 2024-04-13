@@ -59,7 +59,7 @@
   "dependencies": {
     "event-stream-pubsub": "0.1.1",
     "simple-jwt-auth": "0.11.1",
-    "whodis-client": "0.11.11"
+    "whodis-client": "0.12.0"
   },
   "devDependencies": {
     "@commitlint/cli": "17.6.7",

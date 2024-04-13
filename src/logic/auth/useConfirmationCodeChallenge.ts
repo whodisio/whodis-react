@@ -24,10 +24,13 @@ export const useConfirmationCodeChallenge = ({
   storage: WhodisAuthTokenStorage;
 }) => {
   // expose the client and directory uuid
-  const { directoryUuid, clientUuid } = useAuthenticationConfig();
+  const { directoryUuid, clientUuid, override } = useAuthenticationConfig();
 
   // store the challenge uuid
   const [challengeUuid, setChallengeUuid] = useState<string | null>(null);
+
+  // store whether the challenge was answered already
+  const [challengeAnswered, setChallengeAnswered] = useState(false);
 
   // define how to ask the confirmation code challenge
   const askConfirmationCodeChallenge = useCallback(
@@ -45,10 +48,12 @@ export const useConfirmationCodeChallenge = ({
         goal,
         type: ChallengeType.CONFIRMATION_CODE,
         details: { contactMethod },
+        override,
       });
 
       // now that we have the challenge, save it
       setChallengeUuid(newChallengeUuid);
+      setChallengeAnswered(false);
     },
     [directoryUuid, clientUuid],
   );
@@ -72,10 +77,14 @@ export const useConfirmationCodeChallenge = ({
       const { token } = await answerAuthChallenge({
         challengeUuid,
         challengeAnswer: answer,
+        override,
       });
 
       // save the token if one was given for the challenge
       if (token) await storage.set(token);
+
+      // track that the challenge was answered
+      setChallengeAnswered(true);
     },
     [challengeUuid],
   );
@@ -83,6 +92,7 @@ export const useConfirmationCodeChallenge = ({
   // return how to ask, answer, and whether it has been asked
   return {
     challengeHasBeenAsked: typeof challengeUuid === 'string',
+    challengeHasBeenAnswered: challengeAnswered,
     askConfirmationCodeChallenge,
     answerConfirmationCodeChallenge,
   };

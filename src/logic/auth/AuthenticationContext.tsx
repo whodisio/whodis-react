@@ -5,6 +5,9 @@ interface AuthenticationContextState {
   claims: WhodisAuthTokenClaims | null | undefined;
   directoryUuid: string;
   clientUuid: string;
+  override?: {
+    hostname?: string;
+  };
 }
 
 export const AuthenticationContext =

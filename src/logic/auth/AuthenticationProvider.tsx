@@ -12,6 +12,7 @@ export const AuthenticationProvider = ({
   storage,
   directoryUuid,
   clientUuid,
+  override,
 }: {
   children: ReactChild | ReactChildren;
 
@@ -32,6 +33,13 @@ export const AuthenticationProvider = ({
    * the whodis client uuid via which to make requests to the whodis api
    */
   clientUuid: string;
+
+  /**
+   * overrides to apply to requests for advanced usecases
+   */
+  override?: {
+    hostname?: string;
+  };
 }) => {
   // grab the claims
   const { claims } = useAuthableTokenClaims({ storage });
@@ -39,7 +47,7 @@ export const AuthenticationProvider = ({
   // pass them to the provider
   return (
     <AuthenticationContext.Provider
-      value={{ claims, directoryUuid, clientUuid }}
+      value={{ claims, directoryUuid, clientUuid, override }}
     >
       {children}
     </AuthenticationContext.Provider>

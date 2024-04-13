@@ -14,8 +14,8 @@ export const useAuthenticationConfig = () => {
     throw new Error(
       'AuthenticationContext was not initialized. Was the AuthenticationProvider used?',
     ); // fail fast, to help in dev - since this is an issue that would only arise in dev
-  const { directoryUuid, clientUuid } = context;
+  const { directoryUuid, clientUuid, override } = context;
 
   // expose it
-  return { directoryUuid, clientUuid };
+  return { directoryUuid, clientUuid, override };
 };
