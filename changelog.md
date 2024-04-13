@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/whodisio/whodis-react/compare/v0.8.8...v0.9.0) (2024-04-13)
+
+
+### Features
+
+* **override:** support override of hostname for advanced usecases ([1d50a60](https://github.com/whodisio/whodis-react/commit/1d50a6033230dc54d7a4b31266f8409966ee684f))
+
 ## [0.8.8](https://github.com/whodisio/whodis-react/compare/v0.8.7...v0.8.8) (2023-09-24)
 
 
