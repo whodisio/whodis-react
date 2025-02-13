@@ -57,6 +57,7 @@
     "postinstall": "[ -d .git ] && npx husky install || exit 0"
   },
   "dependencies": {
+    "@ehmpathy/error-fns": "1.3.7",
     "event-stream-pubsub": "0.1.1",
     "simple-jwt-auth": "0.11.1",
     "whodis-client": "0.12.0"

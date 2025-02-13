@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { WhodisAuthTokenClaims } from 'whodis-client';
 
 import { WhodisAuthTokenStorage } from '../../domain/WhodisAuthTokenStorage';
+import { getUniOnScreenFocusEventStream } from '../../utils/rheuse/getUniOnScreenFocusEventStream';
 import { getAuthableTokenClaims } from './getAuthableTokenClaims';
 
 export const useAuthableTokenClaims = ({
@@ -39,9 +40,14 @@ export const useAuthableTokenClaims = ({
     // subscribe the auth token updated events, so we have the latest state of the token at all time
     storage.on.set.subscribe({ consumer }); // subscribe on mount
 
+    // subscribe to window focus events, so we recheck whenever window regains focus
+    const onScreenFocusEventStream = getUniOnScreenFocusEventStream();
+    onScreenFocusEventStream.subscribe({ consumer });
+
     // and ensure that we unsubscribe on unmount to cleanup after ourselves
     return () => {
       storage.on.set.unsubscribe({ consumer }); // unsubscribe on unmount
+      onScreenFocusEventStream.unsubscribe({ consumer });
     };
   }, []); // [] -> never rerun this - only run on mount
 
