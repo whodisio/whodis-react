@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.1](https://github.com/whodisio/whodis-react/compare/v0.9.0...v0.9.1) (2025-02-13)
+
+
+### Bug Fixes
+
+* **hook:** subscribe to onscreen focus for faster deauth detection ([3b62406](https://github.com/whodisio/whodis-react/commit/3b624069c7403bedcf31f5fa1b4e5bb2380baafe))
+
 ## [0.9.0](https://github.com/whodisio/whodis-react/compare/v0.8.8...v0.9.0) (2024-04-13)
 
 
