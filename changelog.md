@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.2](https://github.com/whodisio/whodis-react/compare/v0.9.1...v0.9.2) (2025-03-15)
+
+
+### Bug Fixes
+
+* **obs:** drop console logs from prior repair ([afe0c34](https://github.com/whodisio/whodis-react/commit/afe0c34fe3d955d31805c1292f75dc26558a85f6))
+
 ## [0.9.1](https://github.com/whodisio/whodis-react/compare/v0.9.0...v0.9.1) (2025-02-13)
 
 
