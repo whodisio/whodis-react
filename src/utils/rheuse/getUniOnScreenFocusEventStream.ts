@@ -12,7 +12,6 @@ export const getUniOnScreenFocusEventStream = (): {
   unsubscribe: (input: { consumer: () => void | Promise<void> }) => void;
 } => {
   const isRuntimeNative = hasPackageAccessible('react-native');
-  console.log({ isRuntimeNative });
 
   // if native, use appstate api
   if (isRuntimeNative) {
